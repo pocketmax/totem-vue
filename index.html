@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+
+        .container {
+            border: 1px solid lightblue;
+            display: flex;
+        }
+
+        .item {
+            min-width: 150px;
+            min-height: 150px;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+
+        .header {
+            background-color: lightgreen;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,11 +31,13 @@
 
 
 <script type="x/template" id="tile">
-    <div style="border: 1px solid red;">
-        {{data.label}}
-        <template v-for="item in items">
-            <tile :data="item" :items="item.items"></tile>
-        </template>
+    <div class="item">
+        <div class="header">
+            {{data.label}}
+        </div>
+        <div class="container">
+            <tile v-for="item in items" :data="item" :items="item.items"></tile>
+        </div>
     </div>
 
 </script>
@@ -59,29 +79,6 @@
             }
         }
     });
-    /*
-    var t = new traveler(function(data, inner){
-
-        if(data.file === true){
-            var fileCls = " class='file'";
-        } else {
-            var fileCls = '';
-        }
-
-        return "<box"+ fileCls +">" +
-                "<header>" +
-                data.label +
-                "</header>" +
-                "<inner>\n" +
-                inner +
-                "</inner>" +
-                "<footer>" +
-                "</footer>" +
-                "</box>";
-
-
-    });
-    */
 </script>
 </body>
 </html>
