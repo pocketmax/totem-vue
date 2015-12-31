@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <tile :data="tree" :items="tree.items"></tile>
+</div>
+
+
+<script type="x/template" id="tile">
+    <div style="border: 1px solid red;">
+        {{data.label}}
+        <template v-for="item in items">
+            <tile :data="item" :items="item.items"></tile>
+        </template>
+    </div>
+
+</script>
+
+<script src="//vuejs.org/js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        components: {
+            tile: {
+                name: 'tile',
+                template: '#tile',
+                props: ['data','items']
+            }
+        },
+        data: {
+            tree: {
+                label: 'world',
+                type: 'planet',
+                items: [{
+                    label: 'North America',
+                    items: [{
+                        label: 'USA',
+                        items: [{
+                            label: 'Arizona'
+                        }, {
+                            label: 'Washington'
+                        }, {
+                            label: 'Oregon'
+                        }]
+                    }]
+                },{
+                    label: 'South America',
+                    items: [{
+                        label: 'Columbia'
+                    }]
+                }]
+
+            }
+        }
+    });
+    /*
+    var t = new traveler(function(data, inner){
+
+        if(data.file === true){
+            var fileCls = " class='file'";
+        } else {
+            var fileCls = '';
+        }
+
+        return "<box"+ fileCls +">" +
+                "<header>" +
+                data.label +
+                "</header>" +
+                "<inner>\n" +
+                inner +
+                "</inner>" +
+                "<footer>" +
+                "</footer>" +
+                "</box>";
+
+
+    });
+    */
+</script>
+</body>
+</html>
